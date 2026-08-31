@@ -1,0 +1,41 @@
+# === 개인용 로컬 설정 (PC별, 공유 금지) ===
+.claude/settings.local.json
+
+# === OMC 런타임 상태 (저장소와 무관한 세션 캐시) ===
+.omc/
+
+# === Python 빌드 캐시 ===
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# === Node / Next.js (dashboard) ===
+node_modules/
+.next/
+out/
+.turbo/
+
+# === 특허 데이터·산출물 (원본/유효 데이터, 보고서, 중간 산출물) ===
+*.xlsx
+*.xls
+*.csv
+_ipl/
+제외로그.xlsx
+IP_Landscape_Report.pdf
+IP_Landscape_Report.hwpx
+public/stage1-results/
+
+# 단, 템플릿 에셋 hwpx는 추적 유지
+!.claude/skills/ipl-report/assets/양식.hwpx
+!.claude/skills/patent-trend/양식.hwpx
+
+# === 로그·임시 파일 ===
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# === 환경 변수 ===
+.env
+.env.*
