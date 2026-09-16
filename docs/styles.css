@@ -1,0 +1,85 @@
+/* ===== IP Landscape · 모바일 라이트 뷰어 ===== */
+:root {
+  --bg: #f4f5f7;
+  --card: #ffffff;
+  --text: #1a1d24;
+  --muted: #6b7280;
+  --line: #e6e8ec;
+  --brand: #2f6df6;
+  --radius: 16px;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+
+/* ---- top bar ---- */
+.bar {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(255, 255, 255, 0.86); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.bar .wrap { display: flex; align-items: center; gap: 12px; height: 54px; }
+.bar .title { font-weight: 700; font-size: 16px; letter-spacing: -0.02em; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar .back { font-size: 22px; color: var(--muted); width: 30px; }
+.bar .pdf {
+  font-size: 13px; font-weight: 600; color: var(--brand);
+  border: 1px solid #2f6df633; background: #2f6df60d; padding: 6px 12px; border-radius: 999px;
+}
+
+/* ---- index intro ---- */
+.intro { padding: 28px 0 10px; text-align: center; }
+.intro .dot { display: inline-block; font-size: 12px; letter-spacing: 0.12em; color: var(--brand); font-weight: 700; margin-bottom: 8px; }
+.intro h1 { font-size: 23px; margin: 0 0 8px; letter-spacing: -0.03em; }
+.intro p { margin: 0; color: var(--muted); font-size: 14px; }
+
+/* ---- report list ---- */
+.list { padding: 18px 0 40px; display: flex; flex-direction: column; gap: 14px; }
+.item {
+  display: flex; gap: 14px; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 12px; align-items: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.item:active { transform: scale(0.985); }
+.item .cover {
+  width: 74px; height: 104px; flex: none; border-radius: 9px; overflow: hidden;
+  background: #eef0f3; border: 1px solid var(--line);
+}
+.item .cover img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.item .info { flex: 1; min-width: 0; }
+.item .cat { display: inline-block; font-size: 11px; font-weight: 600; color: var(--brand); background: #2f6df60f; padding: 3px 9px; border-radius: 999px; margin-bottom: 6px; }
+.item h3 { margin: 0 0 4px; font-size: 16.5px; letter-spacing: -0.02em; }
+.item .sub { margin: 0; font-size: 12.5px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.item .meta { margin-top: 8px; font-size: 12px; color: var(--muted); display: flex; gap: 12px; flex-wrap: wrap; }
+.item .meta b { color: var(--text); font-weight: 700; }
+.item .go { color: #c2c7d0; font-size: 20px; padding-left: 4px; }
+
+/* ---- report reader (vertical scroll of page images) ---- */
+.reader { padding: 12px 0 60px; }
+.reader .lead { text-align: center; color: var(--muted); font-size: 13px; padding: 8px 0 14px; }
+.reader .page {
+  width: 100%; display: block; border-radius: 10px; margin-bottom: 12px;
+  border: 1px solid var(--line); background: #fff; box-shadow: 0 2px 10px -6px rgba(0,0,0,0.15);
+}
+.reader .end { text-align: center; padding: 20px 0 10px; }
+.reader .end a { display: inline-block; font-size: 14px; font-weight: 600; color: var(--brand); border: 1px solid #2f6df633; padding: 10px 20px; border-radius: 999px; }
+
+/* progress bar */
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--brand); z-index: 30; transition: width 0.1s; }
+
+/* to-top */
+.totop {
+  position: fixed; right: 16px; bottom: 20px; z-index: 25;
+  width: 44px; height: 44px; border-radius: 50%; background: var(--card);
+  border: 1px solid var(--line); box-shadow: 0 4px 16px -6px rgba(0,0,0,0.25);
+  display: none; align-items: center; justify-content: center; font-size: 20px; color: var(--muted);
+}
+.totop.show { display: flex; }
+
+footer { text-align: center; color: #aab0bb; font-size: 12px; padding: 24px 0 34px; }

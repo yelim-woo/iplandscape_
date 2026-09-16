@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>IP Landscape 보고서</title>
+<meta name="description" content="IP Landscape 분석 보고서 모바일 뷰어" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="bar">
+  <div class="wrap">
+    <span class="title">IP Landscape 보고서</span>
+    <a class="pdf" href="https://github.com/yelim-woo/iplandscape_" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="intro">
+    <span class="dot">◆ STRATEGIC IP ANALYSIS</span>
+    <h1>특허 분석 보고서 미리보기</h1>
+    <p>보고서를 눌러 가볍게 넘겨보세요.</p>
+  </section>
+
+  <div class="list" id="list"></div>
+</main>
+
+<footer>© 2026 IP Landscape Workbench</footer>
+
+<script src="data.js"></script>
+<script>
+  document.getElementById("list").innerHTML = window.REPORTS.map((r) => `
+    <a class="item" href="report.html?id=${r.id}">
+      <div class="cover"><img src="reports/${r.id}/cover.png" alt="${r.title}" loading="lazy" /></div>
+      <div class="info">
+        <span class="cat">${r.category}</span>
+        <h3>${r.title}</h3>
+        <p class="sub">${r.subtitle}</p>
+        <div class="meta"><span><b>${r.valid}</b>건</span><span><b>${r.pages}</b>p</span><span>${r.date}</span></div>
+      </div>
+      <span class="go">›</span>
+    </a>`).join("");
+</script>
+</body>
+</html>

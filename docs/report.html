@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>보고서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="bar">
+  <div class="wrap">
+    <a class="back" href="index.html">‹</a>
+    <span class="title" id="title"></span>
+    <a class="pdf" id="pdf" href="#" target="_blank" rel="noopener">PDF</a>
+  </div>
+</div>
+
+<main class="wrap reader" id="reader">
+  <div class="lead" id="lead"></div>
+</main>
+
+<div class="totop" id="totop">↑</div>
+<footer>© 2026 IP Landscape Workbench</footer>
+
+<script src="data.js"></script>
+<script>
+  const id = new URLSearchParams(location.search).get("id");
+  const r = (window.REPORTS || []).find((x) => x.id === id) || window.REPORTS[0];
+  document.title = r.title;
+  document.getElementById("title").textContent = r.title;
+  const pdf = `reports/${r.id}/report.pdf`;
+  document.getElementById("pdf").href = pdf;
+  document.getElementById("lead").textContent = `${r.valid}건 · ${r.pages}p · ${r.date}`;
+
+  const reader = document.getElementById("reader");
+  for (let i = 1; i <= r.pages; i++) {
+    const n = String(i).padStart(2, "0");
+    const img = document.createElement("img");
+    img.className = "page";
+    img.loading = "lazy";
+    img.alt = `${i} 페이지`;
+    img.src = `reports/${r.id}/pages/p${n}.png`;
+    reader.appendChild(img);
+  }
+  const end = document.createElement("div");
+  end.className = "end";
+  end.innerHTML = `<a href="${pdf}" target="_blank" rel="noopener">원본 PDF 열기 ↗</a>`;
+  reader.appendChild(end);
+
+  // scroll progress + to-top
+  const bar = document.getElementById("progress");
+  const totop = document.getElementById("totop");
+  totop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  addEventListener("scroll", () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    const p = h > 0 ? (scrollY / h) * 100 : 0;
+    bar.style.width = p + "%";
+    totop.classList.toggle("show", scrollY > 600);
+  }, { passive: true });
+</script>
+</body>
+</html>
